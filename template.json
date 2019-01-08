@@ -41,15 +41,35 @@
             "properties": {}
         },
         {
-            "type": "Microsoft.Storage/storageAccounts",
-            "name": "[toLower(concat(parameters('storageAccountName'),uniqueString(subscription().subscriptionId)))]",
-            "location": "[parameters('location')]",
-            "apiVersion": "2018-07-01",
-            "sku": {
-                "name": "Standard_LRS"
-            },
-            "kind": "StorageV2",
-            "properties": {}
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2018-05-01",
+            "name": "storageDeployment",
+            "resourceGroup": "[concat(parameters('rgname'),'-1']",
+            "dependsOn": [
+                "[resourceId('Microsoft.Resources/resourceGroups/', (concat(parameters('rgname'),'-1')]"
+            ],
+            "properties": {
+                "mode": "Incremental",
+                "template": {
+                    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+                    "contentVersion": "1.0.0.0",
+                    "parameters": {},
+                    "variables": {},
+                    "resources": [
+                        {
+                            "type": "Microsoft.Storage/storageAccounts",
+                            "name": "[toLower(concat(parameters('storageAccountName'),uniqueString(subscription().subscriptionId)))]",
+                            "location": "[parameters('location')]",
+                            "apiVersion": "2018-07-01",
+                            "sku": {
+                                "name": "Standard_LRS"
+                            },
+                            "kind": "StorageV2",
+                            "properties": {}
+                        }
+                    ]
+                }
+            }
         }
     ],
     "outputs": {}
