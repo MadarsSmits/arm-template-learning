@@ -24,10 +24,6 @@
             "minLength": 3,
             "maxLength": 24,
             "defaultValue": "storage"
-        },
-        "storageAccountType": {
-            "type": "string",
-            "defaultValue": "Standard_LRS"
         }
     },
     "variables": {},
@@ -50,7 +46,7 @@
             "location": "[parameters('location')]",
             "apiVersion": "2018-07-01",
             "sku": {
-                "name": "[parameters('storageAccountType')]"
+                "name": "Standard_LRS"
             },
             "kind": "StorageV2",
             "properties": {}
