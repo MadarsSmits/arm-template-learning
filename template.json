@@ -46,7 +46,7 @@
             "name": "storageDeployment",
             "resourceGroup": "[concat(parameters('rgname'),'-1']",
             "dependsOn": [
-                "[resourceId('Microsoft.Resources/resourceGroups/', (concat(parameters('rgname'),'-1')]"
+                "[resourceId('Microsoft.Resources/resourceGroups/', (concat(parameters('rgname'),'-1')))]"
             ],
             "properties": {
                 "mode": "Incremental",
