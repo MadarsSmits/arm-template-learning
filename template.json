@@ -16,7 +16,8 @@
             "minLength": 1
         },
         "instanceCount": {
-            "type": "int"
+            "type": "int",
+            "defaultValue": "4"
         }
     },
     "variables": {},
