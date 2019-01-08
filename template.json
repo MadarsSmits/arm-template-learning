@@ -1,24 +1,7 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
-    "contentVersion": "1.0.0.1",
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
     "parameters": {
-        "rgname": {
-            "type": "string",
-            "defaultValue": "arm-template-learning"
-        },
-        "location": {
-            "type": "string",
-            "defaultValue": "West Europe",
-            "allowedValues": [
-                "West Europe",
-                "North Europe"
-            ],
-            "minLength": 1
-        },
-        "rgCount": {
-            "type": "int",
-            "defaultValue": 3
-        },
         "storageAccountName": {
             "type": "string",
             "minLength": 3,
@@ -29,48 +12,21 @@
     "variables": {},
     "resources": [
         {
-            "name": "[concat(parameters('rgname'),'-',copyIndex(1))]",
-            "type": "Microsoft.Resources/resourceGroups",
-            "apiVersion": "2018-05-01",
-            "location": "[parameters('location')]",
-            "copy": {
-                "name": "rgCopy",
-                "count": "[parameters('rgCount')]"
+            "type": "Microsoft.Storage/storageAccounts",
+            "name": "[toLower(concat(parameters('storageAccountName'),uniqueString(ResourceGroup().ResouceGroupId)))]",
+            "location": "[ResourceGroup().location]",
+            "apiVersion": "2018-07-01",
+            "sku": {
+                "name": "Standard_LRS"
             },
-            "tags": {},
+            "kind": "StorageV2",
             "properties": {}
-        },
-        {
-            "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2018-05-01",
-            "name": "storageDeployment",
-            "resourceGroup": "arm-template-learning-1'",
-            "dependsOn": [
-                "[resourceId('Microsoft.Resources/resourceGroups/', 'arm-template-learning-1')]"
-            ],
-            "properties": {
-                "mode": "Incremental",
-                "template": {
-                    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-                    "contentVersion": "1.0.0.1",
-                    "parameters": {},
-                    "variables": {},
-                    "resources": [
-                        {
-                            "type": "Microsoft.Storage/storageAccounts",
-                            "name": "[toLower(concat(parameters('storageAccountName'),uniqueString(subscription().subscriptionId)))]",
-                            "location": "[parameters('location')]",
-                            "apiVersion": "2018-07-01",
-                            "sku": {
-                                "name": "Standard_LRS"
-                            },
-                            "kind": "StorageV2",
-                            "properties": {}
-                        }
-                    ]
-                }
-            }
         }
     ],
-    "outputs": {}
+    "outputs": {
+        "storageNameOutput": {
+            "type": "string",
+            "value": "[ResourceGroup().location]"
+        }
+    }
 }

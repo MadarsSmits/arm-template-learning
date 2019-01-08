@@ -1,0 +1,39 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
+    "contentVersion": "1.0.0.1",
+    "parameters": {
+        "rgname": {
+            "type": "string",
+            "defaultValue": "arm-template-learning"
+        },
+        "location": {
+            "type": "string",
+            "defaultValue": "West Europe",
+            "allowedValues": [
+                "West Europe",
+                "North Europe"
+            ],
+            "minLength": 1
+        },
+        "rgCount": {
+            "type": "int",
+            "defaultValue": 3
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "name": "[concat(parameters('rgname'),'-',copyIndex(1))]",
+            "type": "Microsoft.Resources/resourceGroups",
+            "apiVersion": "2018-05-01",
+            "location": "[parameters('location')]",
+            "copy": {
+                "name": "rgCopy",
+                "count": "[parameters('rgCount')]"
+            },
+            "tags": {},
+            "properties": {}
+        }
+    ],
+    "outputs": {}
+}
