@@ -30,7 +30,7 @@
     "outputs": {
         "storageNameOutput": {
             "type": "string",
-            "value": "[toLower(concat(parameters('storageAccountName'),uniqueString(subscription().subscriptionId),'.blob.core.windows.net/'))]"
+            "value": "[toLower(concat(parameters('storageAccountName'),uniqueString(subscription().subscriptionId)))]"
         }
     }
 }
