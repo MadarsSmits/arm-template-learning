@@ -15,7 +15,7 @@
             ],
             "minLength": 1
         },
-        "instanceCount": {
+        "rgCount": {
             "type": "int",
             "defaultValue": "4"
         }
@@ -29,7 +29,7 @@
             "location": "[parameters('location')]",
             "copy": {
                 "name": "rgCopy",
-                "count" : "[parameters('instanceCount')]"
+                "count" : "[parameters('rgCount')]"
             },
             "tags": {},
             "properties": {}
