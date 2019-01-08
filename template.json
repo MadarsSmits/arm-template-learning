@@ -24,6 +24,10 @@
             "minLength": 3,
             "maxLength": 24,
             "defaultValue": "storage"
+        },
+        "storageAccountType": {
+            "type": "string",
+            "defaultValue": "Standard_LRS"
         }
     },
     "variables": {},
