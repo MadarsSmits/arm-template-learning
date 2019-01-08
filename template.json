@@ -7,6 +7,10 @@
             "minLength": 3,
             "maxLength": 24,
             "defaultValue": "storage"
+        },
+        "location": {
+            "type": "string",
+            "defaultValue": "[resourceGroup().location]"
         }
     },
     "variables": {},
@@ -14,7 +18,7 @@
         {
             "type": "Microsoft.Storage/storageAccounts",
             "name": "[toLower(concat(parameters('storageAccountName'),uniqueString(subscription().subscriptionId)))]",
-            "location": "resourceGroup().location]",
+            "location": "[parameters('location')]",
             "apiVersion": "2018-07-01",
             "sku": {
                 "name": "Standard_LRS"
@@ -26,7 +30,7 @@
     "outputs": {
         "storageNameOutput": {
             "type": "string",
-            "value": "[resourceGroup().location]"
+            "value": "[parameters('location')]"
         }
     }
 }
