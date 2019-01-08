@@ -12,6 +12,7 @@ To validate ARM template syntax and make sure, that 'allowedValues' validation w
 ```
 az deployment validate --template-uri https://raw.githubusercontent.com/MadarsSmits/arm-template-learning/master/rg.json --location 'West US' --parameters location='West US'
 ```
+```
 az group deployment validate --template-uri https://raw.githubusercontent.com/MadarsSmits/arm-template-learning/master/template.json --location 'West Europe' --resource-group 'arm-template-learning-1'
 ```
 __arm-template-learning-1:__
