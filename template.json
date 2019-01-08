@@ -23,7 +23,7 @@
     "variables": {},
     "resources": [
         {
-            "name": "[concat(parameters('rgname'),copyIndex(1))]",
+            "name": "[concat(parameters('rgname'),'-',copyIndex(1))]",
             "type": "Microsoft.Resources/resourceGroups",
             "apiVersion": "2018-05-01",
             "location": "[parameters('location')]",
