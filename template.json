@@ -44,9 +44,9 @@
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2018-05-01",
             "name": "storageDeployment",
-            "resourceGroup": "[concat(parameters('rgname'),'-1']",
+            "resourceGroup": "arm-template-learning-1'",
             "dependsOn": [
-                "[resourceId('Microsoft.Resources/resourceGroups/', (concat(parameters('rgname'),'-1')))]"
+                "[resourceId('Microsoft.Resources/resourceGroups/', 'arm-template-learning-1')]"
             ],
             "properties": {
                 "mode": "Incremental",
